@@ -127,14 +127,14 @@ with col2:
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(45, 25))
 
-sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.head(5), palette="viridis", ax=ax[0])
+sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.head(5), hue="product_category_name_english", legend=False, palette="viridis", ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel("Number of Sales", fontsize=80)
 ax[0].set_title("Most sold products", loc="center", fontsize=90)
 ax[0].tick_params(axis ='y', labelsize=55)
 ax[0].tick_params(axis ='x', labelsize=50)
 
-sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.sort_values(by="product_count", ascending=True).head(5), palette="viridis", ax=ax[1])
+sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.sort_values(by="product_count", ascending=True).head(5), hue="product_category_name_english", legend=False, palette="viridis", ax=ax[1])
 ax[1].set_ylabel(None)
 ax[1].set_xlabel("Number of Sales", fontsize=80)
 ax[1].invert_xaxis()
@@ -164,6 +164,8 @@ colors = sns.color_palette("viridis", len(review_score))
 sns.barplot(x=review_score.index,
             y=review_score.values,
             order=review_score.index,
+            hue=review_score.index,
+            legend=False,
             palette=colors)
 
 plt.title("Customer Review Scores for Service", fontsize=15)
@@ -190,6 +192,8 @@ with tab1:
     sns.barplot(x=state.customer_state.value_counts().index,
                 y=state.customer_count.values, 
                 data=state,
+                hue=state.customer_state.value_counts().index,
+                legend=False,
                 palette="viridis"
                     )
 
